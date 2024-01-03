@@ -1,3 +1,28 @@
+getgenv().Owner = 'olawwwriscool' --Username of owners.
+getgenv().Settings = {
+    --// ! Main ! \\--
+    ['Position'] = 'Back', --Position Of Stand [Back | Left | Right]
+    ['CrewID'] = 15358751, --Must Be In Group For It To Work
+    ['Attack'] = 'Heavy', --Heavy = Super Punch Light = Spam Punch [Heavy | Light]
+    ['StandMode'] = 'Star Platinum : OverHeaven', --[Star Platinum : OverHeaven | Star Platinum: The World | Star Platinum, Za Warudo! | TheWorld | Cmoon | King Crimson | Killer Queen | MIH | D4C]
+    ['FlyMode'] = 'Heaven', --[Glide | Fly | Hover | Heaven]
+    ['Prediction'] = 0.37, --Prediction For Attack Or Targetting
+    ['GunPrediction'] = 0.11542, --Prediction For Gun Kill
+    ['AttackMode'] = 'Sky', --[Sky | Under] If [Sky] The Stand Will Attack Infront Of Then And If [Under] The Stand Will Attack In Underground
+    ['GunMode'] = 'Sky', --[Sky | Under]  The Stand Will Shooting Just Like What In The Settings
+    ['Resolver'] = true, --[true | false] Turn On Or Off Resolver If Someone Using Anti Lock
+    --// ! Misc ! \\--
+    ['LowGraphics'] = true, --[true | false] Turns graphics down so your stand doesnt lag too much
+    ['AntiStomp'] = true, --[true | false] The Stand Will Cannot Be Stomped Or Grabbed
+    ['CustomName'] = 'zez1', --Custom Name Text Default Is [Master] Example Of it 'Im Here, Master!'
+    ['Hidescreen'] = true, --[true | false] If [true] You WIll See White Blank Screen But The Performance Is Gonna Be Good]
+    ['ChatCmds'] = false, --[true | false] Chatted When You Use Some Command
+    ['AutoMask'] = true, --[true | false] Auto Buy Mask When The Stand Respawn
+    ['FPSCAP'] = 60, --[false | This is so your main account gets the most fps (MAXED IS 60, SUGGEST 30 FPS ON STANDS)
+    ['Msg'] = 'Ez kid', --When You Say [/e msg] It Makes All The Alts Say That Message
+    ['Alt'] = false,
+}
+
 local HttpService = game:GetService("HttpService")
 
 local function checkLicense(licenseKey)
@@ -53,16 +78,15 @@ enterButton.Parent = frame
 enterButton.MouseButton1Click:Connect(function()
     local licenseKey = keyTextBox.Text
     local result = checkLicense(licenseKey)
-
+    
+    gui:Destroy()
+    
     if result then
         print("Welcome to " .. result.productName .. "!")
         print("Discord ID: " .. result.discordUserID)
     else
         print("License key not found or not associated with the provided Roblox ID.")
     end
-    
-    gui:Destroy()
-
 wait(0.1)
 if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
     game['Loaded']:Wait();
