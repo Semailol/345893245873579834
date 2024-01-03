@@ -1,28 +1,3 @@
-getgenv().Owner = 'olawwwriscool' --Username of owners.
-getgenv().Settings = {
-    --// ! Main ! \\--
-    ['Position'] = 'Back', --Position Of Stand [Back | Left | Right]
-    ['CrewID'] = 15358751, --Must Be In Group For It To Work
-    ['Attack'] = 'Heavy', --Heavy = Super Punch Light = Spam Punch [Heavy | Light]
-    ['StandMode'] = 'Star Platinum : OverHeaven', --[Star Platinum : OverHeaven | Star Platinum: The World | Star Platinum, Za Warudo! | TheWorld | Cmoon | King Crimson | Killer Queen | MIH | D4C]
-    ['FlyMode'] = 'Heaven', --[Glide | Fly | Hover | Heaven]
-    ['Prediction'] = 0.37, --Prediction For Attack Or Targetting
-    ['GunPrediction'] = 0.11542, --Prediction For Gun Kill
-    ['AttackMode'] = 'Sky', --[Sky | Under] If [Sky] The Stand Will Attack Infront Of Then And If [Under] The Stand Will Attack In Underground
-    ['GunMode'] = 'Sky', --[Sky | Under]  The Stand Will Shooting Just Like What In The Settings
-    ['Resolver'] = true, --[true | false] Turn On Or Off Resolver If Someone Using Anti Lock
-    --// ! Misc ! \\--
-    ['LowGraphics'] = true, --[true | false] Turns graphics down so your stand doesnt lag too much
-    ['AntiStomp'] = true, --[true | false] The Stand Will Cannot Be Stomped Or Grabbed
-    ['CustomName'] = 'zez1', --Custom Name Text Default Is [Master] Example Of it 'Im Here, Master!'
-    ['Hidescreen'] = true, --[true | false] If [true] You WIll See White Blank Screen But The Performance Is Gonna Be Good]
-    ['ChatCmds'] = false, --[true | false] Chatted When You Use Some Command
-    ['AutoMask'] = true, --[true | false] Auto Buy Mask When The Stand Respawn
-    ['FPSCAP'] = 60, --[false | This is so your main account gets the most fps (MAXED IS 60, SUGGEST 30 FPS ON STANDS)
-    ['Msg'] = 'Ez kid', --When You Say [/e msg] It Makes All The Alts Say That Message
-    ['Alt'] = false,
-}
-
 local HttpService = game:GetService("HttpService")
 
 local function checkLicense(licenseKey)
@@ -38,55 +13,68 @@ local function checkLicense(licenseKey)
     end
 end
 
-local gui = Instance.new("ScreenGui")
-gui.Parent = game.Players.LocalPlayer.PlayerGui
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextBox = Instance.new("TextBox")
+local UICorner = Instance.new("UICorner")
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.3, 0, 0.3, 0)
-frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-frame.AnchorPoint = Vector2.new(0.5, 0.5)
-frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34) -- Set background color to a dark gray
-frame.BorderSizePixel = 0
-frame.ZIndex = 2
-frame.Parent = gui
+Frame.Parent = game.StarterGui.ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.25999999, 0, 0.321794868, 0)
+Frame.Size = UDim2.new(0, 483, 0, 278)
 
-local keyTextBox = Instance.new("TextBox")
-keyTextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
-keyTextBox.Position = UDim2.new(0.1, 0, 0.1, 0)
-keyTextBox.AnchorPoint = Vector2.new(0, 0)
-keyTextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45) -- Set text box color to a slightly lighter gray
-keyTextBox.BorderSizePixel = 0
-keyTextBox.TextScaled = true
-keyTextBox.Font = Enum.Font.Gotham -- Set font to Gotham for a modern look
-keyTextBox.PlaceholderText = "Enter license key"
-keyTextBox.PlaceholderColor3 = Color3.fromRGB(128, 128, 128) -- Set placeholder color to a lighter gray
-keyTextBox.TextColor3 = Color3.new(1, 1, 1) -- Set text color to white
-keyTextBox.Parent = frame
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BorderSizePixel = 0
+Frame_2.Size = UDim2.new(0, 482, 0, 49)
 
-local enterButton = Instance.new("TextButton")
-enterButton.Size = UDim2.new(0.8, 0, 0.2, 0)
-enterButton.Position = UDim2.new(0.1, 0, 0.4, 0)
-enterButton.AnchorPoint = Vector2.new(0, 0)
-enterButton.BackgroundColor3 = Color3.fromRGB(68, 114, 196) -- Set button color to a blue shade
-enterButton.BorderSizePixel = 0
-enterButton.TextScaled = true
-enterButton.Text = "Enter"
-enterButton.TextColor3 = Color3.new(1, 1, 1) -- Set button text color to white
-enterButton.Font = Enum.Font.Gotham -- Set font to Gotham for consistency
-enterButton.Parent = frame
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 482, 0, 49)
+TextLabel.Font = Enum.Font.FredokaOne
+TextLabel.Text = "Semai stand"
+TextLabel.TextColor3 = Color3.fromRGB(207, 207, 207)
+TextLabel.TextSize = 29.000
 
-enterButton.MouseButton1Click:Connect(function()
-    local licenseKey = keyTextBox.Text
-    local result = checkLicense(licenseKey)
-    
-    gui:Destroy()
-    
-    if result then
-        print("Welcome to " .. result.productName .. "!")
-        print("Discord ID: " .. result.discordUserID)
-    else
-        print("License key not found or not associated with the provided Roblox ID.")
-    end
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(76, 76, 76)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.270703942, 0, 0.735805809, 0)
+TextButton.Size = UDim2.new(0, 220, 0, 55)
+TextButton.Font = Enum.Font.FredokaOne
+TextButton.Text = "Check"
+TextButton.TextColor3 = Color3.fromRGB(220, 220, 220)
+TextButton.TextSize = 29.000
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.165631473, 0, 0.244604319, 0)
+TextBox.Size = UDim2.new(0, 323, 0, 117)
+TextBox.Font = Enum.Font.FredokaOne
+TextBox.Text = "Put key here"
+TextBox.TextColor3 = Color3.fromRGB(184, 184, 184)
+TextBox.TextSize = 24.000
+
+UICorner.Parent = Frame
+
+TextButton.MouseButton1Click:Connect(function()
+local licenseKey = TextBox.Text
+local result = checkLicense(licenseKey)
+if result then
+print("Welcome to Semai Stand")
+print("Discord ID: " .. result.discordUserID)
+else
+print("License key not found")
 wait(0.1)
 if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
     game['Loaded']:Wait();
@@ -2986,7 +2974,8 @@ game.Players.ChildAdded:Connect(function(plr)
 	if plr:IsA("Player") then
 		plr.Chatted:Connect(function(msg)
 			output(plr, msg)
-		   end)
-	    end
-    end)
+		    end)
+	      end
+       end)
+    end
 end)
