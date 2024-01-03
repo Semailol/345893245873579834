@@ -83,10 +83,6 @@ SummonPose = getgenv().Settings.SummonPose
 PosingType = getgenv().Settings.Posing
 Hidescreen = getgenv().Settings.Hidescreen
 Smoothing = getgenv().Settings.Smoothing
-Sounds = getgenv().Settings.Sounds
-SummonMusic = getgenv().Settings.SummonMusic
-VanishAppear = getgenv().Settings.VanishAppearSound
-CustomSong = getgenv().Settings.CustomSong
 resolve = getgenv().Settings.Resolver
 Bind = getgenv().Settings.AntiStomp
 Fpscap = getgenv().Settings.FPSCAP
@@ -841,31 +837,6 @@ function play(ID,STOP,TOOL)
     end
 end
 
-function SummonAudio()
-    if SummonMusic == true and StandMode == 'Star Platinum : OverHeaven' then
-        play(5684695930,true,true)
-    elseif SummonMusic == true and StandMode == "Star Platinum, Za Warudo!" then
-        play(5736107502,true,true)
-    elseif SummonMusic == true and StandMode == 'Star Platinum : The World' then
-        play(2404992854,true,true)
-    elseif SummonMusic == true and StandMode == "TheWorld" then
-        play(5129686200,true,true)
-    elseif SummonMusic == true and StandMode == 'C moon' then
-        play(2404992854,true,true)
-    elseif SummonMusic == true and StandMode == "Cmoon" then
-        play(8258958078,true,true)
-    elseif SummonMusic == true and StandMode == "King Crimson" then
-        play(3373956700,true,true)
-    elseif SummonMusic == true and StandMode == "MIH" then
-        play(8713037614,true,true)
-    elseif SummonMusic == true and StandMode == 'D4C' then
-        play(8769131644,true,true)
-    elseif SummonMusic == true and StandMode == 'Killer Queen' then
-        play(5818138638,true,true)
-    end
-end
-
-
 function Summon()
     Stop()
     follow = true
@@ -954,15 +925,6 @@ function SummonPose3()
 end
 
 function Barrage()
-    if Sounds == true and StandMode == 'Star Platinum : OverHeaven' then
-        play(6181278583,false,true)
-    elseif Sounds == true and StandMode == "Star Platinum,Za Warudo!" then
-        play(6181278583,false,true)
-    elseif Sounds == true and StandMode == 'Star Platinum: The World' then
-        play(6181278583,false,true)
-    elseif Sounds == true and StandMode == "TheWorld" then
-        play(6889746326,false,true)
-    end
     Stop()
     noclip = true
     barragepunch = true	
@@ -1017,9 +979,6 @@ end
 function Nobarrage()
     StopAudio()
     wait()
-    if Sounds == true then
-        play(6603004272,true,true)
-    end
     Summon()
 end
 
@@ -1120,9 +1079,6 @@ function TP(cframe)
     if Alt == false then
         Stop()
         noclip = true
-        if Sounds == true then
-            play(8655611378,true,true) 
-        end	
         if KO(OWNER).Value == false then
             game.ReplicatedStorage.MainEvent:FireServer("LeaveCrew")
         if STAND.Backpack:FindFirstChild("Combat") then STAND.Backpack:FindFirstChild("Combat").Parent = STAND.Character end
@@ -1170,9 +1126,6 @@ function TP(cframe)
 end
 
 function TPGrabbed(cframe)
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
     Stop()
     noclip = true
     getRoot(STAND).CFrame = cframe
@@ -1474,9 +1427,6 @@ Arg("Redeem!", function()
 end)
 
 Create("Drop!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
 
     if Pos == "Alt" then
         follow = false
@@ -1491,9 +1441,6 @@ Create("Drop!",function()
 end)
 
 Create("Throw!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
 
     if Pos == "Alt" then
         follow = false
@@ -1573,72 +1520,12 @@ Create("Desummon!",function()
     Vanish()
 end)
 
-Create("Killer Queen!",function()
-    if SummonMusic == true then
-        play(5818138638,true,true)
-    end
-    Summon()
-end)
-
-Create("Star Platinum: The World",function()
-    if SummonMusic == true then
-        play(2404992854,true,true)
-    end
-    Summon()
-end)
-
-Create("Star Platinum : OverHeaven",function()
-    if SummonMusic == true then
-        play(5684695930,true,true)
-    end
-    Summon()
-end)
-
-Create("Star Platinum,Za Warudo!",function()
-    if SummonMusic == true then
-        play(5736107502,true,true)
-    end
-    Summon()
-end)
-
 Create("Star Platinum!",function()
     Summon()
 end)
 
-Create("ZA WARUDO : OVER HEAVEN",function()
-    if SummonMusic == true then
-        play(5129686200,true,true)
-    end
-    Summon()
-end)
 
-Create("C moon!",function()
-    if SummonMusic == true then
-        play(8258958078,true,true)
-    end
-    Summon()
-end)
 
-Create("D4C!",function()
-    if SummonMusic == true then
-        play(8769131644,true,true)
-    end
-    Summon()
-end)
-
-Create("King Crimson!",function()
-    if SummonMusic == true then
-        play(3373956700,true,true)
-    end
-    Summon()
-end)
-
-Create("Made In Heaven!",function()
-    if SummonMusic == true then
-        play(8713037614,true,true)
-    end
-    Summon()
-end)
 
 Create('Save!',function()
     SAVEOWNER()
@@ -1724,9 +1611,6 @@ Create('Power!',function()
         until STAND.DataFolder.Information.FightingStyle.Value == 'Default'
         follow = true
     end
-    if Sounds == true then
-        play(2152227673, true, true)
-    end
 
     while wait() do
         pcall(function()
@@ -1760,17 +1644,11 @@ end)
 
 Create("Wallet!",function()
     if STAND.Backpack:FindFirstChild("Wallet") then
-        if Sounds == true then
-            play(134732869,true,true)
-        end
         STAND.Backpack:FindFirstChild("Wallet").Parent = STAND.Character
     end
 end)
 
 Create("Unwallet!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     getHumanoid(STAND):UnequipTools()
 end)
 
@@ -1835,30 +1713,18 @@ Create("Nuke!",function()
 end)
 
 Create("Hidden!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     AttackMode = "Under"
 end)
 
 Create("Default!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     AttackMode = "Sky"
 end)
 
 Create("ghidden!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     GunMode = "Under"
 end)
 
 Create("gdefault!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     GunMode = "Sky"
 end)
 
@@ -1868,9 +1734,6 @@ Create("Hide!",function()
     noclip = true
     MaskHide()
     follow = true
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create('Weight!',function()
@@ -1879,9 +1742,6 @@ Create('Weight!',function()
 end)
 
 Create('Dcash!',function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
     game.ReplicatedStorage.MainEvent:FireServer("DropMoney","10000")
 end)
 
@@ -1903,23 +1763,14 @@ end)
 
 Create("pose1",function()
     pose1()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("pose2",function()
     pose2()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("pose3",function()
     pose3()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("leave!",function()
@@ -1928,10 +1779,6 @@ end)
 
 Create("StopAudio!",function()
     StopAudio()
-end)
-
-Create("Song!",function()
-    play(CustomSong,false,true)
 end)
 
 Create('Heal!',function()
@@ -2074,9 +1921,6 @@ Create('Mimic!',function()
     if ChatCmds == true then
         Chat("Mimic Enabled "..CustomName.."!")
     end
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     Stop()
     follow = true
     noclip = true
@@ -2088,9 +1932,6 @@ end)
 Create('Unmimic!',function()
     if ChatCmds == true then
         Chat("Mimic Disabled "..CustomName.."!")
-    end
-    if Sounds == true then
-        play(8655611378,true,true) 
     end
     Stop()
     follow = true
@@ -2104,9 +1945,6 @@ Arg('Altmode!',function()
             Chat("Alt mode activated "..CustomName.."!")
         end
         Alt = true
-        if Sounds == true then
-            play(8655611378,true,true) 
-        end
     end
 end)
 
@@ -2117,9 +1955,6 @@ Arg('Left!',function()
             Chat("Position Set To Left "..CustomName.."!")
         end
         Pos = "Left"
-        if Sounds == true then
-            play(8655611378,true,true) 
-        end
     end
 end)
 
@@ -2130,9 +1965,6 @@ Arg('Right!',function()
             Chat("Position Set To Right "..CustomName.."!")
         end
         Pos = "Right"
-        if Sounds == true then
-            play(8655611378,true,true) 
-        end
     end
 end)
 
@@ -2143,9 +1975,6 @@ Arg('Back!',function()
             Chat("Position Set To Back "..CustomName.."!")
         end
         Pos = "Back"
-        if Sounds == true then
-            play(8655611378,true,true) 
-        end
     end
 end)
 
@@ -2154,9 +1983,6 @@ Create("left!",function()
         Chat("Position Set To Left "..CustomName.."!")
     end
     Pos = "Left"
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("right!",function()
@@ -2164,9 +1990,6 @@ Create("right!",function()
         Chat("Position Set To Right "..CustomName.."!")
     end
     Pos = "Right"
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("back!",function()
@@ -2174,36 +1997,21 @@ Create("back!",function()
         Chat("Position Set To Back "..CustomName.."!")
     end
     Pos = "Back"
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("Under!",function()
     Pos = "Under"
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("Alt!",function()
     Pos = "Alt"
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
 end)
 
 Create("light!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     Attack = "Light"
 end)
 
 Create("Heavy!",function()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     Attack = "Heavy"
 end)
 
@@ -2527,18 +2335,12 @@ end)
 
 Create("Attack!",function()
     Stop()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
     noclip = true
     killnear = true
 end)
 
 Create("Unattack!",function()
     Stop()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
     noclip = true
     follow = true
 end)
@@ -2546,27 +2348,18 @@ end)
 Create("Stab!",function()
     Stop()
     BuyKnife()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end
     noclip = true
     knifenear = true
 end)
 
 Create("Unstab!",function()
     Stop()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
     noclip = true
     follow = true
 end)
 
 Create("Ora!",function()
     Stop()
-    if Sounds == true then
-        play(8655611378,true,true) 
-    end	
     noclip = true
     ORA = true
 end)
