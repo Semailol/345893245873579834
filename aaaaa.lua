@@ -13,68 +13,52 @@ local function checkLicense(licenseKey)
     end
 end
 
-local Frame = Instance.new("Frame")
-local Frame_2 = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local TextButton = Instance.new("TextButton")
-local TextBox = Instance.new("TextBox")
-local UICorner = Instance.new("UICorner")
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+gui.Name = "LicenseCheckGUI"
+gui.Parent = player.PlayerGui
 
-Frame.Parent = game.StarterGui
-Frame.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.25999999, 0, 0.321794868, 0)
-Frame.Size = UDim2.new(0, 483, 0, 278)
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.3, 0, 0.3, 0)
+frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+frame.AnchorPoint = Vector2.new(0.5, 0.5)
+frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+frame.BorderSizePixel = 0
+frame.ZIndex = 2
+frame.Parent = gui
 
-Frame_2.Parent = Frame
-Frame_2.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame_2.BorderSizePixel = 0
-Frame_2.Size = UDim2.new(0, 482, 0, 49)
+local keyTextBox = Instance.new("TextBox")
+keyTextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
+keyTextBox.Position = UDim2.new(0.1, 0, 0.1, 0)
+keyTextBox.AnchorPoint = Vector2.new(0, 0)
+keyTextBox.BackgroundColor3 = Color3.new(0.9, 0.9, 0.9)
+keyTextBox.BorderSizePixel = 0
+keyTextBox.TextScaled = true
+keyTextBox.PlaceholderText = "Enter license key"
+keyTextBox.Parent = frame
 
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Size = UDim2.new(0, 482, 0, 49)
-TextLabel.Font = Enum.Font.FredokaOne
-TextLabel.Text = "Semai stand"
-TextLabel.TextColor3 = Color3.fromRGB(207, 207, 207)
-TextLabel.TextSize = 29.000
+local enterButton = Instance.new("TextButton")
+enterButton.Size = UDim2.new(0.8, 0, 0.2, 0)
+enterButton.Position = UDim2.new(0.1, 0, 0.4, 0)
+enterButton.AnchorPoint = Vector2.new(0, 0)
+enterButton.BackgroundColor3 = Color3.new(0.5, 0.8, 0.5)
+enterButton.BorderSizePixel = 0
+enterButton.TextScaled = true
+enterButton.Text = "Enter"
+enterButton.Parent = frame
 
-TextButton.Parent = Frame
-TextButton.BackgroundColor3 = Color3.fromRGB(76, 76, 76)
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.270703942, 0, 0.735805809, 0)
-TextButton.Size = UDim2.new(0, 220, 0, 55)
-TextButton.Font = Enum.Font.FredokaOne
-TextButton.Text = "Check"
-TextButton.TextColor3 = Color3.fromRGB(220, 220, 220)
-TextButton.TextSize = 29.000
+enterButton.MouseButton1Click:Connect(function()
+    local licenseKey = keyTextBox.Text
+    local result = checkLicense(licenseKey)
 
-TextBox.Parent = Frame
-TextBox.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
-TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextBox.BorderSizePixel = 0
-TextBox.Position = UDim2.new(0.165631473, 0, 0.244604319, 0)
-TextBox.Size = UDim2.new(0, 323, 0, 117)
-TextBox.Font = Enum.Font.FredokaOne
-TextBox.Text = "Put key here"
-TextBox.TextColor3 = Color3.fromRGB(184, 184, 184)
-TextBox.TextSize = 24.000
-
-UICorner.Parent = Frame
-
-TextButton.MouseButton1Click:Connect(function()
-local licenseKey = TextBox.Text
-local result = checkLicense(licenseKey)
-if result then
-print("Welcome to Semai Stand")
-print("Discord ID: " .. result.discordUserID)
-else
-print("License key not found")
+    if result then
+        print("Welcome to " .. result.productName .. "!")
+        print("Discord ID: " .. result.discordUserID)
+        gui:Destroy()
+    else
+        print("License key not found in the database.")
+    gui:Destroy()
+    
 wait(0.1)
 if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
     game['Loaded']:Wait();
