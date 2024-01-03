@@ -20,7 +20,7 @@ local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0.3, 0, 0.3, 0)
 frame.Position = UDim2.new(0.5, 0, 0.5, 0)
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
-frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34) -- Set background color to a dark gray
 frame.BorderSizePixel = 0
 frame.ZIndex = 2
 frame.Parent = gui
@@ -29,20 +29,25 @@ local keyTextBox = Instance.new("TextBox")
 keyTextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
 keyTextBox.Position = UDim2.new(0.1, 0, 0.1, 0)
 keyTextBox.AnchorPoint = Vector2.new(0, 0)
-keyTextBox.BackgroundColor3 = Color3.new(0.9, 0.9, 0.9)
+keyTextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45) -- Set text box color to a slightly lighter gray
 keyTextBox.BorderSizePixel = 0
 keyTextBox.TextScaled = true
+keyTextBox.Font = Enum.Font.Gotham -- Set font to Gotham for a modern look
 keyTextBox.PlaceholderText = "Enter license key"
+keyTextBox.PlaceholderColor3 = Color3.fromRGB(128, 128, 128) -- Set placeholder color to a lighter gray
+keyTextBox.TextColor3 = Color3.new(1, 1, 1) -- Set text color to white
 keyTextBox.Parent = frame
 
 local enterButton = Instance.new("TextButton")
 enterButton.Size = UDim2.new(0.8, 0, 0.2, 0)
 enterButton.Position = UDim2.new(0.1, 0, 0.4, 0)
 enterButton.AnchorPoint = Vector2.new(0, 0)
-enterButton.BackgroundColor3 = Color3.new(0.5, 0.8, 0.5)
+enterButton.BackgroundColor3 = Color3.fromRGB(68, 114, 196) -- Set button color to a blue shade
 enterButton.BorderSizePixel = 0
 enterButton.TextScaled = true
 enterButton.Text = "Enter"
+enterButton.TextColor3 = Color3.new(1, 1, 1) -- Set button text color to white
+enterButton.Font = Enum.Font.Gotham -- Set font to Gotham for consistency
 enterButton.Parent = frame
 
 enterButton.MouseButton1Click:Connect(function()
