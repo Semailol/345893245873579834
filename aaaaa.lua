@@ -9,21 +9,17 @@ local function checkLicense(licenseKey)
         local result = HttpService:JSONDecode(response)
         return result
     else
-        warn("Failed to check license. Error: " .. response)
+        warn("Error: " .. response)
         return nil
     end
 end
-
 local result = checkLicense(key)
-
-if result then
+if not result then
+    print("License key not found.")
+else
     print("Welcome to Semai Stand")
     print("Discord ID: " .. result.discordUserID)
-else
-    print("License key not found.")
-end
 
-wait(0.1)
 if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
     game['Loaded']:Wait();
     game:WaitForChild(game:GetService("Players"));
@@ -2926,4 +2922,3 @@ game.Players.ChildAdded:Connect(function(plr)
 	      end
        end)
     end
-end)
