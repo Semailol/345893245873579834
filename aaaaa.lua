@@ -19,9 +19,9 @@ gui.Name = "LicenseCheckGUI"
 gui.Parent = player.PlayerGui
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.3, 0, 0.3, 0)
-frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-frame.AnchorPoint = Vector2.new(0.5, 0.5)
+frame.Size = UDim2.new(0.8, 0, 0.4, 0)
+frame.Position = UDim2.new(0.1, 0, 0.3, 0)
+frame.AnchorPoint = Vector2.new(0, 0)
 frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
 frame.BorderSizePixel = 0
 frame.ZIndex = 2
@@ -46,7 +46,6 @@ enterButton.BorderSizePixel = 0
 enterButton.TextScaled = true
 enterButton.Text = "Enter"
 enterButton.Parent = frame
-
 enterButton.MouseButton1Click:Connect(function()
     local licenseKey = keyTextBox.Text
     local result = checkLicense(licenseKey)
@@ -58,7 +57,7 @@ enterButton.MouseButton1Click:Connect(function()
     else
         print("License key not found in the database.")
     gui:Destroy()
-    
+
 wait(0.1)
 if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
     game['Loaded']:Wait();
