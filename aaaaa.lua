@@ -1,4 +1,5 @@
 local HttpService = game:GetService("HttpService")
+local key = getgenv().Key
 
 local function checkLicense(licenseKey)
     local serverUrl = "http://127.0.0.1:5000/check_license"
@@ -8,55 +9,19 @@ local function checkLicense(licenseKey)
         local result = HttpService:JSONDecode(response)
         return result
     else
-        warn("Error: " .. response)
+        warn("Failed to check license. Error: " .. response)
         return nil
     end
 end
 
-local player = game.Players.LocalPlayer
-local gui = Instance.new("ScreenGui")
-gui.Name = "LicenseCheckGUI"
-gui.Parent = player.PlayerGui
+local result = checkLicense(key)
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.8, 0, 0.4, 0)
-frame.Position = UDim2.new(0.1, 0, 0.3, 0)
-frame.AnchorPoint = Vector2.new(0, 0)
-frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
-frame.BorderSizePixel = 0
-frame.ZIndex = 2
-frame.Parent = gui
-
-local keyTextBox = Instance.new("TextBox")
-keyTextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
-keyTextBox.Position = UDim2.new(0.1, 0, 0.1, 0)
-keyTextBox.AnchorPoint = Vector2.new(0, 0)
-keyTextBox.BackgroundColor3 = Color3.new(0.9, 0.9, 0.9)
-keyTextBox.BorderSizePixel = 0
-keyTextBox.TextScaled = true
-keyTextBox.PlaceholderText = "Enter license key"
-keyTextBox.Parent = frame
-
-local enterButton = Instance.new("TextButton")
-enterButton.Size = UDim2.new(0.8, 0, 0.2, 0)
-enterButton.Position = UDim2.new(0.1, 0, 0.4, 0)
-enterButton.AnchorPoint = Vector2.new(0, 0)
-enterButton.BackgroundColor3 = Color3.new(0.5, 0.8, 0.5)
-enterButton.BorderSizePixel = 0
-enterButton.TextScaled = true
-enterButton.Text = "Enter"
-enterButton.Parent = frame
-enterButton.MouseButton1Click:Connect(function()
-    local licenseKey = keyTextBox.Text
-    local result = checkLicense(licenseKey)
-
-    if result then
-        print("Welcome to " .. result.productName .. "!")
-        print("Discord ID: " .. result.discordUserID)
-        gui:Destroy()
-    else
-        print("License key not found in the database.")
-    gui:Destroy()
+if result then
+    print("Welcome to Semai Stand")
+    print("Discord ID: " .. result.discordUserID)
+else
+    print("License key not found.")
+end
 
 wait(0.1)
 if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
