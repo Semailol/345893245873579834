@@ -20,7 +20,7 @@ local TextButton = Instance.new("TextButton")
 local TextBox = Instance.new("TextBox")
 local UICorner = Instance.new("UICorner")
 
-Frame.Parent = game.StarterGui.ScreenGui
+Frame.Parent = game.StarterGui
 Frame.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
 Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Frame.BorderSizePixel = 0
