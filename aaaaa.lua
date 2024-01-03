@@ -14,11 +14,9 @@ local function checkLicense(licenseKey)
     end
 end
 local result = checkLicense(key)
-if not result then
-    print("License key not found.")
-else
-    print("Welcome to Semai Stand")
-    print("Discord ID: " .. result.discordUserID)
+if result then
+print("Welcome to Semai Stand")
+print("Discord ID: " .. result.discordUserID)
 
 if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
     game['Loaded']:Wait();
