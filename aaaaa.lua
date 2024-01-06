@@ -2366,6 +2366,54 @@ end
         end
     end)
     
+    rs.heartbeat:connect(function()
+        if GunStomp == true and KO(TARGET).Value == false then
+            StopHoverAnim = true
+            noclip = true
+            Locking = true
+            STAND.Character:FindFirstChild('RightHand').CFrame = getRoot(TARGET).CFrame*CFrame.new(0,5,0)
+            STAND.Character:FindFirstChild('LeftHand').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
+            STAND.Character:FindFirstChild('RightFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
+            STAND.Character:FindFirstChild('LeftFoot').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
+            STAND.Character:FindFirstChild('Head').CFrame = getRoot(STAND).CFrame*CFrame.new(0,0,0)
+            getRoot(STAND).CFrame = getRoot(TARGET).CFrame * CFrame.new(0,-9,0)
+    
+            MainEvent:FireServer("Block", false)
+            if STAND.Character:FindFirstChildWhichIsA("Tool") then
+                if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo") then
+                    if STAND.Character:FindFirstChildWhichIsA("Tool"):FindFirstChild("Ammo").Value <= 0 then
+                        game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload", STAND.Character:FindFirstChildWhichIsA("Tool")) 
+                    end
+                end
+            end
+            STAND.Character:FindFirstChild('[LMG]'):Activate()
+        elseif GunKnock == true and KO(TARGET).Value == true then
+            if Alt == false then
+                getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
+                wait(.2)
+                game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+                wait(.3)
+                getRoot(STAND).CFrame = OWNER.Character:FindFirstChild('HumanoidRootPart').CFrame*CFrame.new(0,3,0)
+            else
+                getRoot(STAND).CFrame = CFrame.new(getTorso(TARGET).Position)*CFrame.new(0,3,0)
+                wait(.2)
+                game.ReplicatedStorage.MainEvent:FireServer("Stomp")
+                wait(.3)
+                getRoot(STAND).CFrame = getRoot(OWNER).CFrame*CFrame.new(0,3,0)
+            end
+            if Dead(guntarget).Value == true then
+                STAND.Character:FindFirstChild('[LMG]'):Deactivate()
+                StopHoverAnim = false
+                GunKnock = false
+                Locking = false
+                follow = true
+                noclip = true
+            end
+        end
+    end)    
+        
+    
+    
     
     
     CreateTargetAbility("Gknock!",function()
